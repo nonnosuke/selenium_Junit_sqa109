@@ -1,11 +1,13 @@
 package org.example.tests;
 
+import io.qameta.allure.Description;
 import org.example.base.SeleniumBaseTest;
 import org.example.pages.AuthPage;
 import org.example.pages.DashboardPage;
 import org.example.pages.HomePage;
 import org.example.utilites.WaitUtility;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -21,6 +23,9 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LoginTest extends SeleniumBaseTest {
+
+    @DisplayName("LoginTest")
+    @Description("Checking Login is working properly.")
     @ParameterizedTest
     @CsvSource({
             "kikuchi, Test123!, Rino",
@@ -46,6 +51,8 @@ public class LoginTest extends SeleniumBaseTest {
     }
 
 
+    @DisplayName("Invalid LoginTest")
+    @Description("Checking Invalid Login is working properly.")
     @ParameterizedTest
     @MethodSource("invalidLoginProvider")
     void testInvalidLogin(String username, String password, String expectedError) {
@@ -72,7 +79,8 @@ public class LoginTest extends SeleniumBaseTest {
         );
     }
 
-
+    @DisplayName("Empty Invalid LoginTest")
+    @Description("Checking Empty Invalid Login is working properly.")
     @ParameterizedTest
     @CsvSource({
             "'', Test123!, -",
